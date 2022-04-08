@@ -1,0 +1,9 @@
+host : 0.0.0.0
+port : 1234
+database_username : root
+
+# sensitive parameters:
+database_password : "{{ vault_database_password }}"
+slack_api_key : "{{ vault_slack_api_key }}"
+github_api_key : "{{ vault_github_api_key }}"
+mysql_database_user: "{{vault_mysql_database_user}}"

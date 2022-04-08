@@ -1,0 +1,34 @@
+#tasks-playbook.yaml
+---
+- name: "PLAY 1: tasks playbook"
+  hosts: localhost
+  #connection: local
+  gather_facts: False
+  vars:
+    test: True
+  pre_tasks:
+    - name: "PRE-TASK1: collect facts"
+      setup:
+  roles:
+  tasks:
+   - name: "TASK 1: check connectivity"
+     ping:
+
+   - name: "TASK 2: print hostname"
+     debug:
+       var: ansible_hostname
+
+   - name: "TASK 3: print hostname"
+     debug:
+       msg: 
+        - "variable value: {{ test }}"
+        - "{{ ansible_hostname }}"
+        - "real hostname: {{ ansible_hostname }}"
+        - "inventory hostname: {{ inventory_hostname }}"
+   - name: "Afficher le secret"
+     debug:
+        msg: "{{host}}"
+
+  post_tasks:
+  handlers:
+
