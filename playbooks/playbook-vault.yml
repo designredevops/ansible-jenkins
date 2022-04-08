@@ -4,6 +4,9 @@
   hosts: localhost
   #connection: local
   gather_facts: False
+  vars_files:
+    - group_vars/vars.yml
+    - group_vars/vault.yml
   vars:
     test: True
   pre_tasks:
