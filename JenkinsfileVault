@@ -1,11 +1,18 @@
 pipeline {
     agent {label "embedded"}
     stages {
-        stage('Ansible Task') {
+        stage('Ansible playbook with sh') {
             steps {
               withCredentials([file(credentialsId: 'ansible-vault-password', variable: 'ansibleVaultKeyFile')]) {
                  sh 'ansible-playbook playbooks/playbook-vault.yml --vault-password-file ${ansibleVaultKeyFile}'
-                 //ansiblePlaybook playbook: 'playbooks/playbook-vault.yml', inventory: '', extras: "-e env_name=$environment --vault-password-file ${ansibleVaultKeyFile}"
+              }
+            }
+        }
+        
+        stage('Ansible playbook with groovy') {
+            steps {
+              withCredentials([file(credentialsId: 'ansible-vault-password', variable: 'ansibleVaultKeyFile')]) {
+              ansiblePlaybook playbook: 'playbooks/playbook-vault.yml', inventory: '', extras: "--vault-password-file ${ansibleVaultKeyFile}"
               }
             }
         }
